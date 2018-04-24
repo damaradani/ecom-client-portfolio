@@ -9,7 +9,8 @@ export default new Vuex.Store({
   state: {
     items: [],
     charts: [],
-    server: 'http://localhost:3000/',
+    // Local server: 'http://localhost:3000/',
+    server: 'http://ecommers-server-dnd.damaradani.cf/',
     token: '',
     role: ''
   },

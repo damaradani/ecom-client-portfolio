@@ -67,10 +67,11 @@ export default {
           }
         })
         .catch(err => {
+          console.log(err)
           swal({
             icon: 'error',
             title: 'Oops...',
-            text: err
+            text: 'Login / Password is wrong'
           })
         })
     }
