@@ -3,6 +3,7 @@
     <div class="modal fade" id="signUpModal" role="dialog">
       <div class="modal-dialog">
         <div class="modal-content">
+          <form @submit.prevent="signup()">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal">&times;</button>
             <h4 class="modal-title">Sign Up</h4>
@@ -33,8 +34,9 @@
             <input type="password" v-model="conPass" class="form-control" id="SUconPass">
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-default" @click="signup()">Sign Up</button>
+            <button type="submit" class="btn btn-default">Sign Up</button>
           </div>
+          </form>
         </div>
       </div>
     </div>
@@ -78,6 +80,7 @@ export default {
               'You sign up successfully!',
               'success'
             ).then(result => {
+              // eslint-disable-next-line
               $('#signUpModal').modal('toggle')
             })
           })
@@ -100,6 +103,7 @@ export default {
       }
     },
     cekForm: function () {
+      // eslint-disable-next-line
       let regEx = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
       let checkEmail = regEx.test(String(this.email).toLowerCase())
       let cekPwd = this.password.match(/[0-9]/g)

@@ -45,6 +45,7 @@ export default {
           localStorage.removeItem('token')
           this.$store.commit('setRole', '')
           this.$store.commit('setToken', '')
+          this.$store.commit('clearState', '')
           swal(
             'Log out!',
             'You have been log out.',

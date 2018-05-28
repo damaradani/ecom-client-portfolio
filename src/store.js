@@ -56,6 +56,11 @@ export default new Vuex.Store({
     }
   },
   mutations: {
+    clearState: function (state, value) {
+      state.charts = []
+      state.role = ''
+      state.token = ''
+    },
     setRole: function (state, value) {
       state.role = value
     },
@@ -109,8 +114,8 @@ export default new Vuex.Store({
           let items = item.data.data
           commit('getItems', items)
         })
-        .catch(err => {
-          console.log(err)
+        .catch(() => {
+          // console.log(err)
         })
     },
     addItem: function ({ commit }, objItem) {
@@ -128,8 +133,8 @@ export default new Vuex.Store({
             'success'
           )
         })
-        .catch(err => {
-          console.log(err)
+        .catch(() => {
+          // console.log(err)
           swal({
             icon: 'error',
             title: 'Oops...',
@@ -149,7 +154,7 @@ export default new Vuex.Store({
           dispatch('addItem', objItem)
         })
         .catch(err => {
-          console.log(err)
+          // console.log(err)
           swal({
             icon: 'error',
             title: 'Oops...',
@@ -174,7 +179,7 @@ export default new Vuex.Store({
             dispatch('editItem', objItem)
           })
           .catch(err => {
-            console.log(err)
+            // console.log(err)
             swal({
               icon: 'error',
               title: 'Oops...',
@@ -247,8 +252,8 @@ export default new Vuex.Store({
             let chart = charts.data.data
             commit('getCharts', chart)
           })
-          .catch(err => {
-            console.log(err)
+          .catch(() => {
+            // console.log(err)
           })
       }
     },
@@ -259,15 +264,17 @@ export default new Vuex.Store({
 
       axios.post(url, { item }, {headers: { token }})
         .then(response => {
-          // swal(
-          //   'New Instrument!',
-          //   'Instrument has been added to Chart',
-          //   'success'
-          // )
+          if (!objItem.increase) {
+            swal(
+              `${objItem.name}`,
+              'Has been added to Chart',
+              'success'
+            )
+          }
           commit('addToCharts', response.data.data)
         })
-        .catch(err => {
-          console.log(err)
+        .catch(() => {
+          // console.log(err)
           swal({
             icon: 'error',
             title: 'Oops...',
@@ -289,11 +296,11 @@ export default new Vuex.Store({
       let url = this.state.server + 'chart/delete/' + itemId + '/item'
       let token = this.state.token
       axios.delete(url, {headers: { token }})
-        .then(result => {
-          console.log(result) // nanti di hapus ga perlu kayanya
+        .then(() => {
+          // console.log(result) // nanti di hapus ga perlu kayanya
         })
-        .catch(err => {
-          console.log(err)
+        .catch(() => {
+          // console.log(err)
         })
     },
     deleteChartItem: function ({ commit }, itemId) {
@@ -327,8 +334,8 @@ export default new Vuex.Store({
           commit('setToken', token)
           this.dispatch('getCharts')
         })
-        .catch(err => {
-          console.log(err)
+        .catch(() => {
+          // console.log(err)
           // swal({
           //   icon: 'error',
           //   title: 'Oops...',

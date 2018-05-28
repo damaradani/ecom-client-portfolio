@@ -95,6 +95,7 @@ export default {
       return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
     },
     increase: function (item) {
+      item.increase = true
       this.addToCharts(item)
     },
     decrease: function (item) {
@@ -115,6 +116,7 @@ export default {
         `Your Total Payment is IDR ${this.addCommas(this.grandTotal)}`,
         'success'
       ).then(result => {
+        // eslint-disable-next-line
         $('#chartModal').modal('toggle')
       })
     }

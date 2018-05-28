@@ -49,9 +49,10 @@ export default {
     }
   }
 }
-
+/* eslint-disable */
 $(document).ready(function () {
   // Add smooth scrolling to all links in navbar + footer link
+  // eslint-disable-next-line
   $(".navbar a, footer a[href='#myPage']").on('click', function (event) {
     // Make sure this.hash has a value before overriding default behavior
     if (this.hash !== '') {
